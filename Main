@@ -1,0 +1,30 @@
+package org.vicrul.tasks.array;
+
+public class Main {
+
+    public static void main(String[] args) {
+        IntArrayList list = new IntArrayList();
+        list.addValue(0);
+        list.addValue(1);
+        list.addValue(2);
+        list.addValue(3);
+        list.addValue(4);
+        list.addValue(5);
+        list.addValue(6);
+        list.addValue(7);
+        list.addValue(8);
+        list.addValue(9);
+        list.addValue(10);
+        list.addValue(11);
+        list.addValue(12);
+
+        list.print();
+
+        System.out.println(list.getValue(13));
+
+        System.out.println("После удаения: ");
+        list.delValue(3);
+        list.print();
+        System.out.println(list.size());
+    }
+}
