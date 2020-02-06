@@ -1,0 +1,78 @@
+package org.vicrul.tasks.array;
+
+import java.util.Arrays;
+
+public class IntArrayList {
+
+    private int[] elements;
+    private int size;
+    private static final int DEFAULT_CAPACITY = 10;
+
+    public IntArrayList() {
+        this.elements = new int[DEFAULT_CAPACITY];
+    }
+
+    public IntArrayList(int initialCapacity) {
+        if (initialCapacity >= 0) {
+            this.elements = new int[initialCapacity];
+        } else {
+            throw new IllegalArgumentException("Вместимость массива не может быть отрицательной");
+        }
+    }
+
+    public int getValue(int index) {
+        isIndexExist(index);
+        return elements[index];
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void addValue(int value) {
+        if (size == elements.length) {
+            elements = expandArray();
+        }
+        elements[size] = value;
+        size++;
+    }
+
+    public void addValue(int index, int value) {
+
+    }
+
+    public void setValue(int index, int value) {
+        isIndexExist(index);
+        elements[index] = value;
+    }
+
+    public void delValue(int index) {
+        isIndexExist(index);
+        int[] tempArray = new int[elements.length - 1];
+        System.arraycopy(elements, 0, tempArray, 0, index);
+        System.arraycopy(elements, index + 1, tempArray, index, elements.length - index - 1);
+        elements = tempArray;
+        size--;
+    }
+
+    public void print() {
+        int[] printArray = new int[size];
+        System.arraycopy(elements, 0, printArray, 0, size);
+        System.out.println(Arrays.toString(printArray));
+    }
+
+    private int[] expandArray() {
+        int[] tempArray = new int[elements.length * 2];
+        System.arraycopy(elements, 0, tempArray, 0, elements.length);
+        return tempArray;
+    }
+
+    private boolean isIndexExist(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Элемент с индексом " + index +
+                    " не найден в массиве. Индекс последнего элемента в массиве - " + (size - 1) +
+                    ". Длина массива = " + elements.length);
+        }
+        return true;
+    }
+}
